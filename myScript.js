@@ -162,7 +162,7 @@ function riprendiDati(i){
     
     let radioSesso = document.getElementsByName("sesso");
     if(studente.sesso == "M") radioSesso[0].checked = true;
-    else radioSesso[1].checked = true;
+    else if(studente.sesso == "F") radioSesso[1].checked = true;
 
     let votiMaterie = document.getElementsByName("votoMateria");
     for(let i = 0; i < votiMaterie.length; i++){
