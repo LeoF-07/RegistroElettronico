@@ -121,7 +121,7 @@ function modificaStudente(){
         return;
     }
 
-    studenti[i].votiMaterie = [
+    studenti[posizioneStudente].votiMaterie = [
         document.getElementById("votoEdCivica").value,
         document.getElementById("votoItaliano").value,
         document.getElementById("votoStoria").value,
@@ -135,7 +135,7 @@ function modificaStudente(){
     ];
 
     let divStudente = document.getElementById(`${cognome}_${nome}`);
-    divStudente.innerHTML = `${cognome + " " + nome + " " + studenti[i].sesso + " " + materieTesto(studenti[i].votiMaterie)}`;
+    divStudente.innerHTML = `${cognome + " " + nome + " " + studenti[posizioneStudente].sesso + " " + materieTesto(studenti[posizioneStudente].votiMaterie)}`;
 }
 
 function trovaPosizioneStudente(cognome, nome){
