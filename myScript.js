@@ -104,8 +104,8 @@ function aggiungiStudente(){
         }
     );
 
-    let studente = `<div onclick=riprendiDati(${studenti.length - 1}) id="${cognome}_${nome}">${cognome + " " + nome + " " + sesso + " " + materieTesto(votiMaterie)}</div>`;
-    document.getElementById("contenitoreRegistro").innerHTML += studente;
+    let studente = `<div onclick=riprendiDati(${studenti.length - 1}) id="${cognome}_${nome}" class="contenitoreStudente">${cognome + " " + nome + " " + sesso + " " + materieTesto(votiMaterie)}</div>`;
+    document.getElementById("registro").innerHTML += studente;
 
     form.reset(); // poi potrei anche toglierlo
 }
@@ -167,6 +167,56 @@ function riprendiDati(i){
     let votiMaterie = document.getElementsByName("votoMateria");
     for(let i = 0; i < votiMaterie.length; i++){
         votiMaterie[i].value = studente.votiMaterie[i];
+    }
+}
+
+function rimuoviStudente(){
+    let cognome = document.getElementById("cognome").value;
+    let nome = document.getElementById("nome").value;
+
+    let posizioneStudente = trovaPosizioneStudente(cognome, nome);
+
+    if(posizioneStudente == -1) {
+        alert("Studente non presente, se vuoi puoi aggiungerlo");
+        return;
+    }
+
+    studenti.splice(posizioneStudente, 1);
+
+    let divStudente = document.getElementById(`${cognome}_${nome}`);
+    divStudente.remove();
+
+    let contenitoriStudenti = document.getElementsByClassName("contenitoreStudente");
+    for(let i = posizioneStudente; i < contenitoriStudenti.length; i++){
+        contenitoriStudenti[i].removeAttribute("onclick");
+        contenitoriStudenti[i].setAttribute("onclick", `riprendiDati(${studenti.length - 1})`);
+    }
+}
+
+function ordinaStudenti(){
+    let temp;
+    let swapped;
+    for(let i = 0; i < studenti.length; i++){
+        swapped = false;
+
+        for(let j = 0; j < studenti.length - i - 1; j++){
+            if((studenti[j].cognome + studenti[i].none) > (studenti[j + 1].cognome + studenti[j + 1].cognome)){
+                temp = studenti[j];
+                studenti[j] = studenti[j + 1];
+                studenti[j + 1] = temp;
+                swapped = true;
+            }
+        }
+
+        if(!swapped) break;
+    }
+
+    let registro = document.getElementById("registro");
+    registro.innerHTML = "";
+
+    for(let i = 0; i < studenti.length; i++){
+        let studente = `<div onclick=riprendiDati(${i}) id="${studenti[i].cognome}_${studenti[i].nome}" class="contenitoreStudente">${studenti[i].cognome + " " + studenti[i].nome + " " + studenti[i].sesso + " " + materieTesto(studenti[i].votiMaterie)}</div>`;
+        document.getElementById("registro").innerHTML += studente;
     }
 }
 
