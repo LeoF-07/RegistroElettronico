@@ -1,0 +1,23 @@
+main{
+    width: 100%;
+    display: inline-block;
+}
+
+#contenitoreForm{
+    float: left;
+}
+
+#contenitoreRegistro{
+    float: right;
+}
+
+.voto{
+    width: 30px;
+    float: right;
+    margin-left: 10px;
+}
+
+.votoEMateria{
+    height: 21px;
+    align-items: center;
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Registro elettronico</title>
+</head>
+<body onload="onLoad_Setup()">
+    <header>Registro elettronico</header>
+    <main>
+        <article id="contenitoreForm">
+            <form action="" id="form" onsubmit="event.preventDefault()">
+                Cognome:<br>
+                <input type="text" id="cognome"><br>
+                Nome:<br>
+                <input type="text" id="nome"><br>
+
+                Sesso
+                <input type="radio" name="sesso" value="M">Maschio</input>
+                <input type="radio" name="sesso" value="F">Femmina</input><br>
+
+                <section id="materieEVoti"></section>
+
+                <section id="pulsanti">
+                    <button type="submit" onclick="aggiungiStudente()" class="pulsante">Inserisci</button>
+                    <button type="submit" onclick="modificaStudente()" class="pulsante">Modifica</button>
+                    <button type="submit" onclick="rimuoviStudente()" class="pulsante">Rimuovi</button>
+                    <button type="submit" onclick="ordinaStudenti()" class="pulsante">Ordina</button>
+                </section>
+            </form>
+
+            Materia:
+            <select name="materia" id="selezioneMateria">
+                <option value="0">-- Seleziona materia --</option>
+            </select>
+            media = 
+        </article>
+        <article id="contenitoreRegistro">
+            Studenti
+        </article>
+    </main>
+    <footer>Leonardo Fortin</footer>
+
+    <script src="myScript.js"></script>
+</body>
+</html>
