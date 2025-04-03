@@ -1,14 +1,57 @@
+body{
+    /*min-width: 70%;*/
+    min-width: 900px;
+}
+
+header{
+    text-align: center;
+    border: 3px rgb(47, 206, 166) solid;
+    background-color: lightgreen;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
 main{
     width: 100%;
     display: inline-block;
 }
 
+footer{
+    text-align: right;
+}
+
 #contenitoreForm{
+    /*padding: 40px;*/
+    padding: 4%;
+    background-color:lightsalmon;
     float: left;
+    border: 3px lightcoral solid;
+    border-radius: 10px;
+}
+
+#pulsanti{
+    padding: 10px;
+    background-color: lightblue;
+    border: 3px lightskyblue solid;
+    border-radius: 10px;
 }
 
 #contenitoreRegistro{
     float: right;
+    width: 50%;
+    text-align: center;
+
+    /*background-color: lightgreen;
+    border: 3px lightseagreen solid;*/
+    border: 3px plum solid;
+    margin-bottom: 10px;
+    background-color: pink;
+    border-radius: 10px;
+}
+
+#registro{
+    text-align: left;
+    padding: 4%;
 }
 
 .voto{

@@ -61,6 +61,16 @@ function onLoad_Setup(){
         opzione.setAttribute("value", `"${materia.id}"`);
         selezioneMateria.append(opzione);
     });
+
+    fetch("./db.json").then(
+        response => response.json()
+    ).then((data) => {
+        let studenti = data.studenti;
+        for(let i = 0; i < studenti.length; i++){
+            let studente = `<li onclick=riprendiDati(${i}) id="${studenti[i].cognome}_${studenti[i].nome}" class="contenitoreStudente">${studenti[i].cognome + " " + studenti[i].nome + " " + studenti[i].sesso + " " + materieTesto(studenti[i].votiMaterie)}</li>`;
+            document.getElementById("registro").innerHTML += studente;
+        }
+    }).catch(error => console.log("Si è verificato un errore!"))
 }
 
 function aggiungiStudente(){
@@ -82,7 +92,7 @@ function aggiungiStudente(){
         }
     }
 
-    let votiMaterie = [
+    /*let votiMaterie = [
         document.getElementById("votoEdCivica").value,
         document.getElementById("votoItaliano").value,
         document.getElementById("votoStoria").value,
@@ -93,7 +103,13 @@ function aggiungiStudente(){
         document.getElementById("votoTPSIT").value,
         document.getElementById("votoTelecomunicazioni").value,
         document.getElementById("votoScienzeMotorie").value
-    ];
+    ];*/
+
+    let elencoVotiMaterie = document.getElementsByName("votoMateria");
+    let votiMaterie = [];
+    for(let i = 0; i < elencoVotiMaterie.length; i++){
+        votiMaterie[i] = document.getElementById(elencoVotiMaterie[i].id).value;
+    }
 
     studenti.push(
         {
@@ -104,7 +120,7 @@ function aggiungiStudente(){
         }
     );
 
-    let studente = `<div onclick=riprendiDati(${studenti.length - 1}) id="${cognome}_${nome}" class="contenitoreStudente">${cognome + " " + nome + " " + sesso + " " + materieTesto(votiMaterie)}</div>`;
+    let studente = `<li onclick=riprendiDati(${studenti.length - 1}) id="${cognome}_${nome}" class="contenitoreStudente">${cognome + " " + nome + " " + sesso + " " + materieTesto(votiMaterie)}</li>`;
     document.getElementById("registro").innerHTML += studente;
 
     form.reset(); // poi potrei anche toglierlo
@@ -121,7 +137,7 @@ function modificaStudente(){
         return;
     }
 
-    studenti[posizioneStudente].votiMaterie = [
+    /*studenti[posizioneStudente].votiMaterie = [
         document.getElementById("votoEdCivica").value,
         document.getElementById("votoItaliano").value,
         document.getElementById("votoStoria").value,
@@ -132,7 +148,12 @@ function modificaStudente(){
         document.getElementById("votoTPSIT").value,
         document.getElementById("votoTelecomunicazioni").value,
         document.getElementById("votoScienzeMotorie").value
-    ];
+    ];*/
+
+    let elencoVotiMaterie = document.getElementsByName("votoMateria");
+    for(let i = 0; i < elencoVotiMaterie.length; i++){
+        studenti[posizioneStudente].votiMaterie[i] = document.getElementById(elencoVotiMaterie[i].id).value;
+    }
 
     let divStudente = document.getElementById(`${cognome}_${nome}`);
     divStudente.innerHTML = `${cognome + " " + nome + " " + studenti[posizioneStudente].sesso + " " + materieTesto(studenti[posizioneStudente].votiMaterie)}`;
@@ -217,6 +238,31 @@ function ordinaStudenti(){
     for(let i = 0; i < studenti.length; i++){
         let studente = `<div onclick=riprendiDati(${i}) id="${studenti[i].cognome}_${studenti[i].nome}" class="contenitoreStudente">${studenti[i].cognome + " " + studenti[i].nome + " " + studenti[i].sesso + " " + materieTesto(studenti[i].votiMaterie)}</div>`;
         document.getElementById("registro").innerHTML += studente;
+    }
+}
+
+async function aggiornaServer() {
+    dati = {"studenti": studenti};
+
+    const options = {
+        method: 'POST',
+        body: JSON.stringify(dati),
+    };
+
+    /*
+    fetch(url + "aggDati", options).then(
+        response => response.json()
+    ).then((data) => {
+        console.log(data);
+    }).catch(error => console.log("Si è verificato un errore!"))
+    */
+
+    try {
+        const response = await fetch(url + "aggDati", options);
+        const result = await response.json();
+        console.log("Esito:", result.esito);
+    } catch (error) {
+        console.error("Error:", error);
     }
 }
 

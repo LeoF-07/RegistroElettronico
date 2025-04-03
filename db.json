@@ -1,0 +1,16 @@
+{
+  "studenti": [
+    {
+      "cognome": "Aldobrandi",
+      "nome": "Filippo",
+      "sesso": "M",
+      "votiMaterie": [8,8,6,8,8,8,8,8,8,8]
+    },
+    {
+      "cognome": "Carducci",
+      "nome": "Andrea",
+      "sesso": "M",
+      "votiMaterie": [8,8,7,8,8,9,8,8,8,8]
+    }
+  ]
+}
