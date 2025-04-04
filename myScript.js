@@ -221,7 +221,7 @@ function ordinaStudenti(){
     registro.innerHTML = "";
 
     for(let i = 0; i < studenti.length; i++){
-        let studente = `<div onclick=riprendiDati(${i}) id="${studenti[i].cognome}_${studenti[i].nome}" class="contenitoreStudente">${studenti[i].cognome + " " + studenti[i].nome + " " + studenti[i].sesso + " " + materieTesto(studenti[i].votiMaterie)}</div>`;
+        let studente = `<li onclick=riprendiDati(${i}) id="${studenti[i].cognome}_${studenti[i].nome}" class="contenitoreStudente">${studenti[i].cognome + " " + studenti[i].nome + " " + studenti[i].sesso + " " + materieTesto(studenti[i].votiMaterie)}</li>`;
         document.getElementById("registro").innerHTML += studente;
     }
 }
