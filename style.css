@@ -31,7 +31,8 @@ footer{
 
 #contenitoreForm{
     /*padding: 40px;*/
-    padding: 4%;
+    /*padding: 4%;*/
+    padding-left: 4%; padding-right: 4%; padding-top: 1.5%; padding-bottom: 1.5%;
     background-color:lightsalmon;
     float: left;
     border: 3px lightcoral solid;
@@ -79,6 +80,8 @@ footer{
 .votoEMateria{
     height: 21px;
     align-items: center;
+    display: block;
+    margin-top: 1%;
 }
 
 .contenitoreStudente{
