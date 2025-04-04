@@ -29,14 +29,14 @@
                     <button type="submit" onclick="ordinaStudenti()" class="pulsante">Ordina</button>
                     <br>
                     <button type="submit" onclick="aggiornaServer()" class="pulsante" id="pulsanteAggiorna">Aggiorna Server</button>
-                </section><br>
+                </section><br><br>
             </form>
 
             Materia:
-            <select name="materia" id="selezioneMateria">
+            <select name="materia" id="selezioneMateria" onchange="calcolaMedia()">
                 <option value="0">-- Seleziona materia --</option>
-            </select><br>
-            media = 
+            </select><br><br>
+            media = <span id="media"></span>
         </article>
         <article id="contenitoreRegistro">
             Studenti

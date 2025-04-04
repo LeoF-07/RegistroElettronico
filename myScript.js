@@ -256,7 +256,14 @@ function calcolaMedia(){
     let selezioneMateria = document.getElementById("selezioneMateria");
     let indiceSelezionato = selezioneMateria.selectedIndex;
 
-    let materiaSelezionata = selezioneMateria.options[indiceSelezionato];
-    let valoreOpzione = opzioneSelezionata.value;
-    //let testoOpzione = valoreSelezionato.text;
+    /*let materiaSelezionata = selezioneMateria.options[indiceSelezionato];
+    let idMateria = materiaSelezionata.value;*/
+    
+    let media = 0;
+    studenti.forEach(studente => {
+        media += studente.votiMaterie[indiceSelezionato - 1];
+    });
+    media /= studenti.length;
+
+    document.getElementById("media").innerHTML = media;
 }

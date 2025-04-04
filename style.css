@@ -2,6 +2,7 @@ body{
     /*min-width: 70%;*/
     min-width: 900px;
     background-color: rgb(226, 229, 233);
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 header{
@@ -10,6 +11,7 @@ header{
     background-color: lightgreen;
     border-radius: 10px;
     margin-bottom: 10px;
+    padding: 1%;
 }
 
 main{
@@ -19,6 +21,12 @@ main{
 
 footer{
     text-align: right;
+    border: 3px rgb(47, 206, 166) solid;
+    background-color: lightgreen;
+    border-radius: 10px;
+    margin-top: 10px;
+    padding: 1%;
+    height: 80px;
 }
 
 #contenitoreForm{
@@ -51,14 +59,15 @@ footer{
     /*background-color: lightgreen;
     border: 3px lightseagreen solid;*/
     border: 3px plum solid;
-    margin-bottom: 10px;
     background-color: pink;
     border-radius: 10px;
+
+    padding: 1%;
 }
 
 #registro{
     text-align: left;
-    /*padding: 4%;*/
+    padding: 4%;
 }
 
 .voto{
@@ -70,4 +79,8 @@ footer{
 .votoEMateria{
     height: 21px;
     align-items: center;
+}
+
+.contenitoreStudente{
+    margin: 10px;
 }
