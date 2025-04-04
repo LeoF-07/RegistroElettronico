@@ -1,6 +1,7 @@
 body{
     /*min-width: 70%;*/
     min-width: 900px;
+    background-color: rgb(226, 229, 233);
 }
 
 header{
@@ -30,10 +31,16 @@ footer{
 }
 
 #pulsanti{
+    text-align: center;
     padding: 10px;
     background-color: lightblue;
     border: 3px lightskyblue solid;
     border-radius: 10px;
+}
+
+.pulsante{
+    padding: 5px;
+    margin: 6px;
 }
 
 #contenitoreRegistro{
@@ -51,7 +58,7 @@ footer{
 
 #registro{
     text-align: left;
-    padding: 4%;
+    /*padding: 4%;*/
 }
 
 .voto{

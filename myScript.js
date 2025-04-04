@@ -62,15 +62,26 @@ function onLoad_Setup(){
         selezioneMateria.append(opzione);
     });
 
-    fetch("./db.json").then(
+    fetch("http://127.0.0.1:8000/elencoStudenti").then(
         response => response.json()
     ).then((data) => {
-        let studenti = data.studenti;
-        for(let i = 0; i < studenti.length; i++){
-            let studente = `<li onclick=riprendiDati(${i}) id="${studenti[i].cognome}_${studenti[i].nome}" class="contenitoreStudente">${studenti[i].cognome + " " + studenti[i].nome + " " + studenti[i].sesso + " " + materieTesto(studenti[i].votiMaterie)}</li>`;
+        for(let i in data){
+            studenti.push(data[i]);
+            let studente = `<li onclick=riprendiDati(${i}) id="${data[i].cognome}_${data[i].nome}" class="contenitoreStudente">${data[i].cognome + " " + data[i].nome + " " + data[i].sesso + " " + materieTesto(data[i].votiMaterie)}</li>`;
             document.getElementById("registro").innerHTML += studente;
         }
     }).catch(error => console.log("Si è verificato un errore!"))
+
+    /*fetch("./db.json").then(
+        response => response.json()
+    ).then((data) => {
+        let studentiDB = data.studenti;
+        for(let i = 0; i < studentiDB.length; i++){
+            studenti.push(studentiDB[i]);
+            let studente = `<li onclick=riprendiDati(${i}) id="${studentiDB[i].cognome}_${studentiDB[i].nome}" class="contenitoreStudente">${studentiDB[i].cognome + " " + studentiDB[i].nome + " " + studentiDB[i].sesso + " " + materieTesto(studentiDB[i].votiMaterie)}</li>`;
+            document.getElementById("registro").innerHTML += studente;
+        }
+    }).catch(error => console.log("Si è verificato un errore!"))*/
 }
 
 function aggiungiStudente(){
@@ -91,19 +102,6 @@ function aggiungiStudente(){
             break;
         }
     }
-
-    /*let votiMaterie = [
-        document.getElementById("votoEdCivica").value,
-        document.getElementById("votoItaliano").value,
-        document.getElementById("votoStoria").value,
-        document.getElementById("votoInglese").value,
-        document.getElementById("votoMatematica").value,
-        document.getElementById("votoInformatica").value,
-        document.getElementById("votoSistemi").value,
-        document.getElementById("votoTPSIT").value,
-        document.getElementById("votoTelecomunicazioni").value,
-        document.getElementById("votoScienzeMotorie").value
-    ];*/
 
     let elencoVotiMaterie = document.getElementsByName("votoMateria");
     let votiMaterie = [];
@@ -136,19 +134,6 @@ function modificaStudente(){
         alert("Studente non presente, se vuoi puoi aggiungerlo");
         return;
     }
-
-    /*studenti[posizioneStudente].votiMaterie = [
-        document.getElementById("votoEdCivica").value,
-        document.getElementById("votoItaliano").value,
-        document.getElementById("votoStoria").value,
-        document.getElementById("votoInglese").value,
-        document.getElementById("votoMatematica").value,
-        document.getElementById("votoInformatica").value,
-        document.getElementById("votoSistemi").value,
-        document.getElementById("votoTPSIT").value,
-        document.getElementById("votoTelecomunicazioni").value,
-        document.getElementById("votoScienzeMotorie").value
-    ];*/
 
     let elencoVotiMaterie = document.getElementsByName("votoMateria");
     for(let i = 0; i < elencoVotiMaterie.length; i++){
@@ -246,24 +231,25 @@ async function aggiornaServer() {
 
     const options = {
         method: 'POST',
+        //url: "/aggDati",
         body: JSON.stringify(dati),
     };
 
-    /*
-    fetch(url + "aggDati", options).then(
+    
+    await fetch("http://127.0.0.1:8000/aggDati", options).then(
         response => response.json()
     ).then((data) => {
         console.log(data);
     }).catch(error => console.log("Si è verificato un errore!"))
-    */
+    
 
-    try {
+    /*try {
         const response = await fetch(url + "aggDati", options);
         const result = await response.json();
         console.log("Esito:", result.esito);
     } catch (error) {
         console.error("Error:", error);
-    }
+    }*/
 }
 
 function calcolaMedia(){
