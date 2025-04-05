@@ -1,3 +1,5 @@
+const url = "http://127.0.0.1:8000";
+
 const materie = [
     {
         nome: "ed. civica",
@@ -62,7 +64,7 @@ function onLoad_Setup(){
         selezioneMateria.append(opzione);
     });
 
-    fetch("http://127.0.0.1:8000/elencoStudenti").then(
+    fetch(url + "/elencoStudenti").then(
         response => response.json()
     ).then((data) => {
         for(let i in data){
@@ -106,7 +108,7 @@ function aggiungiStudente(){
     let elencoVotiMaterie = document.getElementsByName("votoMateria");
     let votiMaterie = [];
     for(let i = 0; i < elencoVotiMaterie.length; i++){
-        votiMaterie[i] = document.getElementById(elencoVotiMaterie[i].id).value;
+        votiMaterie[i] = Number(document.getElementById(elencoVotiMaterie[i].id).value);
     }
 
     studenti.push(
@@ -236,7 +238,7 @@ async function aggiornaServer() {
     };
 
     
-    await fetch("http://127.0.0.1:8000/aggDati", options).then(
+    await fetch(url + "/aggDati", options).then(
         response => response.json()
     ).then((data) => {
         console.log(data);
@@ -259,9 +261,11 @@ function calcolaMedia(){
     /*let materiaSelezionata = selezioneMateria.options[indiceSelezionato];
     let idMateria = materiaSelezionata.value;*/
     
-    let media = 0;
+    let media = Number(0);
     studenti.forEach(studente => {
         media += studente.votiMaterie[indiceSelezionato - 1];
+        console.log(studente.votiMaterie[indiceSelezionato-1]);
+        console.log(media);
     });
     media /= studenti.length;
 
