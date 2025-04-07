@@ -69,7 +69,7 @@ function onLoad_Setup(){
     ).then((data) => {
         for(let i in data){
             studenti.push(data[i]);
-            let studente = `<li onclick=riprendiDati(${i}) id="${data[i].cognome}_${data[i].nome}" class="contenitoreStudente">${data[i].cognome + " " + data[i].nome + " " + data[i].sesso + " " + materieTesto(data[i].votiMaterie)}</li>`;
+            let studente = `<li onclick=riprendiDati(${i}) id="${data[i].cognome}_${data[i].nome}" class="contenitoreStudente">${data[i].cognome + " " + data[i].nome + " " + data[i].sesso + " ----- " + materieTesto(data[i].votiMaterie)}</li>`;
             document.getElementById("registro").innerHTML += studente;
         }
     }).catch(error => console.log("Si è verificato un errore!"))
@@ -120,7 +120,7 @@ function aggiungiStudente(){
         }
     );
 
-    let studente = `<li onclick=riprendiDati(${studenti.length - 1}) id="${cognome}_${nome}" class="contenitoreStudente">${cognome + " " + nome + " " + sesso + " " + materieTesto(votiMaterie)}</li>`;
+    let studente = `<li onclick=riprendiDati(${studenti.length - 1}) id="${cognome}_${nome}" class="contenitoreStudente">${cognome + " " + nome + " " + sesso + " ----- " + materieTesto(votiMaterie)}</li>`;
     document.getElementById("registro").innerHTML += studente;
 
     form.reset(); // poi potrei anche toglierlo
@@ -143,7 +143,7 @@ function modificaStudente(){
     }
 
     let divStudente = document.getElementById(`${cognome}_${nome}`);
-    divStudente.innerHTML = `${cognome + " " + nome + " " + studenti[posizioneStudente].sesso + " " + materieTesto(studenti[posizioneStudente].votiMaterie)}`;
+    divStudente.innerHTML = `${cognome + " " + nome + " " + studenti[posizioneStudente].sesso + " ----- " + materieTesto(studenti[posizioneStudente].votiMaterie)}`;
 }
 
 function trovaPosizioneStudente(cognome, nome){
@@ -223,7 +223,7 @@ function ordinaStudenti(){
     registro.innerHTML = "";
 
     for(let i = 0; i < studenti.length; i++){
-        let studente = `<li onclick=riprendiDati(${i}) id="${studenti[i].cognome}_${studenti[i].nome}" class="contenitoreStudente">${studenti[i].cognome + " " + studenti[i].nome + " " + studenti[i].sesso + " " + materieTesto(studenti[i].votiMaterie)}</li>`;
+        let studente = `<li onclick=riprendiDati(${i}) id="${studenti[i].cognome}_${studenti[i].nome}" class="contenitoreStudente">${studenti[i].cognome + " " + studenti[i].nome + " " + studenti[i].sesso + " ----- " + materieTesto(studenti[i].votiMaterie)}</li>`;
         document.getElementById("registro").innerHTML += studente;
     }
 }
@@ -233,7 +233,7 @@ async function aggiornaServer() {
 
     const options = {
         method: 'POST',
-        //url: "/aggDati",
+        //url: "/aggDati", // non serve
         body: JSON.stringify(dati),
     };
 
@@ -264,8 +264,6 @@ function calcolaMedia(){
     let media = Number(0);
     studenti.forEach(studente => {
         media += studente.votiMaterie[indiceSelezionato - 1];
-        console.log(studente.votiMaterie[indiceSelezionato-1]);
-        console.log(media);
     });
     media /= studenti.length;
 
