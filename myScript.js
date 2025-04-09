@@ -139,7 +139,7 @@ function modificaStudente(){
 
     let elencoVotiMaterie = document.getElementsByName("votoMateria");
     for(let i = 0; i < elencoVotiMaterie.length; i++){
-        studenti[posizioneStudente].votiMaterie[i] = document.getElementById(elencoVotiMaterie[i].id).value;
+        studenti[posizioneStudente].votiMaterie[i] = Number(document.getElementById(elencoVotiMaterie[i].id).value);
     }
 
     let divStudente = document.getElementById(`${cognome}_${nome}`);
